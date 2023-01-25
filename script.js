@@ -14,15 +14,9 @@ function createNoteEl(id,content){
 
  element.addEventListener('dblclick',()=>{
   const warning=confirm('Do you want to delete this note?');
-  if(warning){
-   deleteNote(id,element)
-  }
- })
+  if(warning){deleteNote(id,element)}})
 
- element.addEventListener('input',()=>{
-  updateNote(id, element.value);
- });
-
+ element.addEventListener('input',()=>{updateNote(id, element.value)});
  return element;
 }
 
@@ -49,17 +43,12 @@ function addNote() {
   console.log(noteObj.id, noteObj.content);
   appEl.insertBefore(noteEl, btnEl);
   notes.push(noteObj);
-
   saveNote(notes)
 }
 
-function saveNote(notes){
- localStorage.setItem('note-app', JSON.stringify(notes))
-}
+function saveNote(notes){localStorage.setItem('note-app', JSON.stringify(notes))}
 
-function getNotes(){
- return JSON.parse(localStorage.getItem('note-app')||'[]');
-}
+function getNotes(){return JSON.parse(localStorage.getItem('note-app')||'[]')}
 
 btnEl.addEventListener('click', addNote);
 
